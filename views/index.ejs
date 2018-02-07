@@ -1,11 +1,116 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
   <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src="http://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <title>clonner</title>
   </head>
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+    <nav class="navbar navbar-dark bg-dark">
+      <a class="navbar-brand" href="#">clonner</a>
+      <form class="form-inline search-form" action="index.html" method="post">
+        <input class="form-control mr-2" type="search" name="search" placeholder="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit" name="search_button">Search</button>
+      </form>
+    </nav>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-3 user-col">
+          <div class="card">
+            <img class="card-img-top" src="/images/cover.jpg" alt="user cover">
+            <div class="card-body user-card-body">
+              <h5 class="card-title">Neil Schultz-Cox</h5>
+              <p>@NeilTCox</p>
+              <div class="row user-card-data">
+                <div class="col-xs-4">
+                  <p>Clones</p>
+                  <p>12</p>
+                </div>
+                <div class="col-xs-4">
+                  <p>Cloning</p>
+                  <p>800</p>
+                </div>
+                <div class="col-xs-4">
+                  <p>Cloners</p>
+                  <p>0</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6">
+            <form class="form-inline post-form" action="index.html" method="post">
+              <input class="form-control mr-2 mb-sm-0" type="text" name="postcontent" value="" placeholder="What's up?">
+              <button class="btn btn-outline-success my-2 my-sm-0" type="submit" name="postcontent_button">Post</button>
+            </form>
+
+            <ul class="list-group post-list">
+              <li class="list-group-item">
+                <div class="media post-media">
+                  <img class="mr-3" src="/images/profile.jpg" alt="user pic">
+                  <div class="media-body">
+                    <h6>Neil Schultz-Cox</h6><p>@NeilTCox</p>
+                    <p class="post-text">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                  </div>
+                </div>
+              </li>
+              <li class="list-group-item">
+                <div class="media post-media">
+                  <img class="mr-3" src="/images/profile.jpg" alt="user pic">
+                  <div class="media-body">
+                    <h6>Neil Schultz-Cox</h6><p>@NeilTCox</p>
+                    <p class="post-text">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                  </div>
+                </div>
+              </li>
+              <li class="list-group-item">
+                <div class="media post-media">
+                  <img class="mr-3" src="/images/profile.jpg" alt="user pic">
+                  <div class="media-body">
+                    <h6>Neil Schultz-Cox</h6><p>@NeilTCox</p>
+                    <p class="post-text">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                  </div>
+                </div>
+              </li>
+              <li class="list-group-item">
+                <div class="media post-media">
+                  <img class="mr-3" src="/images/profile.jpg" alt="user pic">
+                  <div class="media-body">
+                    <h6>Neil Schultz-Cox</h6><p>@NeilTCox</p>
+                    <p class="post-text">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                  </div>
+                </div>
+              </li>
+              <li class="list-group-item">
+                <div class="media post-media">
+                  <img class="mr-3" src="/images/profile.jpg" alt="user pic">
+                  <div class="media-body">
+                    <h6>Neil Schultz-Cox</h6><p>@NeilTCox</p>
+                    <p class="post-text">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                  </div>
+                </div>
+              </li>
+              <li class="list-group-item">
+                <div class="media post-media">
+                  <img class="mr-3" src="/images/profile.jpg" alt="user pic">
+                  <div class="media-body">
+                    <h6>Neil Schultz-Cox</h6><p>@NeilTCox</p>
+                    <p class="post-text">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                  </div>
+                </div>
+              </li>
+            </ul>
+        </div>
+
+        <div class="col-sm-3" id="suggest-col">
+          col 3
+        </div>
+      </div>
+    </div>
   </body>
 </html>

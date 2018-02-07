@@ -1,8 +1,87 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+body{
+  background-color: #e6ecf0;
 }
 
-a {
-  color: #00B7FF;
+.search-form{
+  align-content: stretch;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+}
+
+.search-form input{
+  flex-grow: 1;
+}
+
+.user-col .card{
+  margin-top: 20px;
+}
+
+.user-col .card img{
+  max-height: 100px;
+  min-height: 100px;
+  object-fit: cover;
+}
+
+.user-card-data{
+  font-size: 10px;
+}
+
+.user-card-data div{
+  margin-left: 2.25em;
+  margin-right: 2.25em;
+}
+
+.user-card-data p{
+  margin-bottom: -1px;
+  margin-top: -1px;
+}
+
+.user-card-body h5, p{
+  margin-top: -15px;
+}
+
+
+
+.post-form{
+  align-content: stretch;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+  margin-bottom: 10px;
+  margin-top: 20px;
+}
+
+.post-form input{
+  flex-grow: 1;
+}
+
+.post-list{
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.post-list li{
+  background-color: #e6ecf0;
+  border: 0;
+  padding: 0;
+  padding-bottom: 5px;
+}
+
+.post-media{
+  background-color: #ffffff;
+}
+
+.post-media .media-body{
+  margin-top: 10px;
+}
+
+.post-media img{
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+.post-text{
+  font-size: 14px;
+  margin-right: 10px;
 }
