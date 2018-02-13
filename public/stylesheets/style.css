@@ -1,49 +1,68 @@
-body{
+body {
   background-color: #e6ecf0;
 }
 
-.search-form{
-  align-content: stretch;
-  display: flex;
-  flex-wrap: nowrap;
-  justify-content: flex-end;
+.search-form {
+  align-content: flex-end;
+  align-self: flex-end;
+  margin-left: auto;
+  margin-right: 10px;
 }
 
-.search-form input{
+.search-form input {
   flex-grow: 1;
 }
 
-.user-col .card{
+.login-button, .logout-button {
+  color: #28a745;
+}
+
+.landing-jumbotron {
+  background-attachment: fixed;
+  background-image: url("https://serving.photos.photobox.com/994956671290f3f242c87a9f5731dd78bf936eb07e55ac34eff04d09da43a9b27da56127.jpg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding-bottom: 30rem;
+}
+
+.landing-jumbotron .container {
+  margin-top: 10rem;
+}
+
+.landing-jumbotron * {
+  color: white;
+}
+
+.user-col .card {
   margin-top: 20px;
 }
 
-.user-col .card img{
+.user-col .card img {
   max-height: 100px;
   min-height: 100px;
   object-fit: cover;
 }
 
-.user-card-data{
+.user-card-data {
   font-size: 10px;
 }
 
-.user-card-data div{
+.user-card-data div {
   margin-left: 2.25em;
   margin-right: 2.25em;
 }
 
-.user-card-data p{
+.user-card-data p {
   margin-bottom: -1px;
   margin-top: -1px;
 }
 
-.user-card-body h5, p{
+.user-card-body h5, p {
   margin-top: -15px;
 }
 
-
-
-.post-form{
+.post-form {
   align-content: stretch;
   display: flex;
   flex-wrap: nowrap;
@@ -52,36 +71,49 @@ body{
   margin-top: 20px;
 }
 
-.post-form input{
+.post-form input {
   flex-grow: 1;
 }
 
-.post-list{
+.post-list {
   margin-bottom: 10px;
   margin-top: 10px;
 }
 
-.post-list li{
+.post-list li {
   background-color: #e6ecf0;
   border: 0;
   padding: 0;
   padding-bottom: 5px;
 }
 
-.post-media{
+.post-media {
   background-color: #ffffff;
 }
 
-.post-media .media-body{
+.post-media .media-body {
   margin-top: 10px;
 }
 
-.post-media img{
+.post-media img {
   margin-left: 10px;
   margin-top: 10px;
 }
 
-.post-text{
+.post-text {
   font-size: 14px;
   margin-right: 10px;
 }
+
+.discover-header {
+  color: #28a745;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.discover-container {
+  max-height: 700px;
+  overflow: auto;
+}
+
+.follow-button {}

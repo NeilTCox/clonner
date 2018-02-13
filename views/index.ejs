@@ -1,116 +1,163 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <script src="http://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="/stylesheets/style.css">
-    <title>clonner</title>
-  </head>
-  <body>
-    <nav class="navbar navbar-dark bg-dark">
-      <a class="navbar-brand" href="#">clonner</a>
-      <form class="form-inline search-form" action="index.html" method="post">
-        <input class="form-control mr-2" type="search" name="search" placeholder="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit" name="search_button">Search</button>
-      </form>
-    </nav>
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-3 user-col">
-          <div class="card">
-            <img class="card-img-top" src="/images/cover.jpg" alt="user cover">
-            <div class="card-body user-card-body">
-              <h5 class="card-title">Neil Schultz-Cox</h5>
-              <p>@NeilTCox</p>
-              <div class="row user-card-data">
-                <div class="col-xs-4">
-                  <p>Clones</p>
-                  <p>12</p>
-                </div>
-                <div class="col-xs-4">
-                  <p>Cloning</p>
-                  <p>800</p>
-                </div>
-                <div class="col-xs-4">
-                  <p>Cloners</p>
-                  <p>0</p>
-                </div>
+<% include includes/header.ejs %>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-3 user-col">
+        <div class="card">
+          <img class="card-img-top" src="/images/cover.jpg" alt="user cover">
+          <div class="card-body user-card-body">
+            <h5 class="card-title"><%= loggedUser.username %></h5>
+            <p>
+              @
+              <%= loggedUser.username %>
+            </p>
+            <div class="row user-card-data">
+              <div class="col-xs-4">
+                <p>Clones</p>
+                <p>12</p>
+              </div>
+              <div class="col-xs-4">
+                <p>Cloning</p>
+                <p>800</p>
+              </div>
+              <div class="col-xs-4">
+                <p>Cloners</p>
+                <p>0</p>
               </div>
             </div>
           </div>
         </div>
+      </div>
 
-        <div class="col-sm-6">
-            <form class="form-inline post-form" action="index.html" method="post">
-              <input class="form-control mr-2 mb-sm-0" type="text" name="postcontent" value="" placeholder="What's up?">
-              <button class="btn btn-outline-success my-2 my-sm-0" type="submit" name="postcontent_button">Post</button>
-            </form>
+      <div class="col-sm-6">
+        <form class="form-inline post-form">
+          <input class="form-control mr-2 mb-sm-0" type="text" id="post-input" name="post_content" placeholder="What's up?">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="button" id="post-button" name="post_content_button">Post</button>
+        </form>
 
-            <ul class="list-group post-list">
+        <ul class="list-group post-list" id="post-list">
+          <% for(var i = 0; i < postList.length; i++){ %>
+            <% if (loggedUser.following.includes(postList[i].author_username)) { %>
               <li class="list-group-item">
                 <div class="media post-media">
                   <img class="mr-3" src="/images/profile.jpg" alt="user pic">
                   <div class="media-body">
-                    <h6>Neil Schultz-Cox</h6><p>@NeilTCox</p>
-                    <p class="post-text">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                    <h6><%= postList[i].author_username %></h6>
+                    <p>
+                      @
+                      <%= postList[i].author_username %>
+                    </p>
+                    <p class="post-text">
+                      <%= postList[i].main_content %>
+                    </p>
                   </div>
                 </div>
               </li>
-              <li class="list-group-item">
-                <div class="media post-media">
-                  <img class="mr-3" src="/images/profile.jpg" alt="user pic">
-                  <div class="media-body">
-                    <h6>Neil Schultz-Cox</h6><p>@NeilTCox</p>
-                    <p class="post-text">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                  </div>
-                </div>
-              </li>
-              <li class="list-group-item">
-                <div class="media post-media">
-                  <img class="mr-3" src="/images/profile.jpg" alt="user pic">
-                  <div class="media-body">
-                    <h6>Neil Schultz-Cox</h6><p>@NeilTCox</p>
-                    <p class="post-text">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                  </div>
-                </div>
-              </li>
-              <li class="list-group-item">
-                <div class="media post-media">
-                  <img class="mr-3" src="/images/profile.jpg" alt="user pic">
-                  <div class="media-body">
-                    <h6>Neil Schultz-Cox</h6><p>@NeilTCox</p>
-                    <p class="post-text">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                  </div>
-                </div>
-              </li>
-              <li class="list-group-item">
-                <div class="media post-media">
-                  <img class="mr-3" src="/images/profile.jpg" alt="user pic">
-                  <div class="media-body">
-                    <h6>Neil Schultz-Cox</h6><p>@NeilTCox</p>
-                    <p class="post-text">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                  </div>
-                </div>
-              </li>
-              <li class="list-group-item">
-                <div class="media post-media">
-                  <img class="mr-3" src="/images/profile.jpg" alt="user pic">
-                  <div class="media-body">
-                    <h6>Neil Schultz-Cox</h6><p>@NeilTCox</p>
-                    <p class="post-text">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                  </div>
-                </div>
-              </li>
-            </ul>
-        </div>
+              <% } %>
+                <% } %>
+        </ul>
+      </div>
 
-        <div class="col-sm-3" id="suggest-col">
-          col 3
+      <div class="col-sm-3 discover-col">
+        <h2 class="discover-header">Discover</h2>
+        <div class="discover-container">
+          <ul class="list-group post-list" class="discover-list" id="discover-list">
+            <% for(var i = 0; i < userList.length; i++){ %>
+              <li class="list-group-item">
+                <div class="card">
+                  <img class="card-img-top" src="/images/cover.jpg" alt="user cover">
+                  <div class="card-body user-card-body">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <h5 class="card-title"><%= userList[i].username %></h5>
+                        <p>@
+                          <%= userList[i].username %>
+                        </p>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="row user-card-data">
+                          <% if (loggedUser.following.includes(userList[i].username)) { %>
+                            <button class="btn btn-outline-success follow-button" type="button" data-user-username="<%= userList[i].username %>" id="follow-button">Following</button>
+                            <% }else{ %>
+                              <button class="btn btn-outline-success follow-button" type="button" data-user-username="<%= userList[i].username %>" id="follow-button">Follow</button>
+                              <% } %>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <% } %>
+          </ul>
         </div>
       </div>
     </div>
+  </div>
+
+  <script type="text/javascript">
+    $(function() {
+      $('.post-form').on('click', '#post-button', function() {
+        var form_data = $('#post-input').serialize();
+        $.ajax({
+          method: 'POST',
+          url: '/post',
+          data: form_data
+        }).done(function(response) {
+          if (response) {
+            $('#post-list').prepend(
+              `<li class="list-group-item">
+                  <div class="media post-media">
+                    <img class="mr-3" src="/images/profile.jpg" alt="user pic">
+                    <div class="media-body">
+                      <h6>${response.author_username}</h6><p>@${response.author_username}</p>
+                      <p class="post-text">${response.main_content}</p>
+                    </div>
+                  </div>
+                </li>`
+            );
+          }
+        });
+        $('.post-form')[0].reset();
+        $('.post-form input').first().focus();
+      });
+
+      $('#discover-list').on('click', '.follow-button', function(event) {
+        var button = $(this);
+        var userUsername = $(this).attr('data-user-username');
+        $.ajax({
+          method: 'POST',
+          url: `/follow/${userUsername}`
+        }).done(function(response) {
+          if (response) {
+            button.html('Following');
+          } else {
+            button.html('Follow');
+          }
+        });
+      });
+    });
+  </script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script type="text/javascript">
+    var socket = io();
+    // for (var i = 0; i < loggedUser.following.length; i++) {
+    //   socket.join(loggedUser.following[i]);
+    //   console.log('adding room');
+    // }
+    // socket.on('newPost', (data) => {
+    //
+    //   $('#post-list').prepend(
+    //     `<li class="list-group-item">
+    //       <div class="media post-media">
+    //         <img class="mr-3" src="/images/profile.jpg" alt="user pic">
+    //         <div class="media-body">
+    //           <h6>${data.author_username}</h6><p>@${data.author_username}</p>
+    //           <p class="post-text">${data.main_content}</p>
+    //         </div>
+    //       </div>
+    //     </li>`
+    //   );
+    // });
+  </script>
   </body>
-</html>
+
+  </html>
