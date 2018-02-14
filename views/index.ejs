@@ -101,20 +101,6 @@
           method: 'POST',
           url: '/post',
           data: form_data
-        }).done(function(response) {
-          if (response) {
-            $('#post-list').prepend(
-              `<li class="list-group-item">
-                  <div class="media post-media">
-                    <img class="mr-3" src="/images/profile.jpg" alt="user pic">
-                    <div class="media-body">
-                      <h6>${response.author_username}</h6><p>@${response.author_username}</p>
-                      <p class="post-text">${response.main_content}</p>
-                    </div>
-                  </div>
-                </li>`
-            );
-          }
         });
         $('.post-form')[0].reset();
         $('.post-form input').first().focus();
@@ -139,24 +125,20 @@
   <script src="/socket.io/socket.io.js"></script>
   <script type="text/javascript">
     var socket = io();
-    // for (var i = 0; i < loggedUser.following.length; i++) {
-    //   socket.join(loggedUser.following[i]);
-    //   console.log('adding room');
-    // }
-    // socket.on('newPost', (data) => {
-    //
-    //   $('#post-list').prepend(
-    //     `<li class="list-group-item">
-    //       <div class="media post-media">
-    //         <img class="mr-3" src="/images/profile.jpg" alt="user pic">
-    //         <div class="media-body">
-    //           <h6>${data.author_username}</h6><p>@${data.author_username}</p>
-    //           <p class="post-text">${data.main_content}</p>
-    //         </div>
-    //       </div>
-    //     </li>`
-    //   );
-    // });
+    socket.on('newPost', (data) => {
+      console.log(data.data);
+      $('#post-list').prepend(
+        `<li class="list-group-item">
+          <div class="media post-media">
+            <img class="mr-3" src="/images/profile.jpg" alt="user pic">
+            <div class="media-body">
+              <h6>${data.data.author_username}</h6><p>@${data.data.author_username}</p>
+              <p class="post-text">${data.data.main_content}</p>
+            </div>
+          </div>
+        </li>`
+      );
+    });
   </script>
   </body>
 

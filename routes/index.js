@@ -3,6 +3,7 @@ var router = express.Router();
 var usersModel = require('../models/users');
 var postsModel = require('../models/posts');
 var io = require('../io');
+var bcrypt = require('bcrypt');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -33,30 +34,46 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/join', function(req, res) {
-  var newUser = new usersModel({
-    username: req.body.join_username,
-    password: req.body.join_password
-  });
-  newUser.save(function(err, user) {
-    if (err) {
-      res.redirect('/');
-      return console.error(err);
-    } else {
-      res.redirect('/');
-    }
+  bcrypt.hash(req.body.join_password, 10, function(err, hash) {
+    var newUser = new usersModel({
+      username: req.body.join_username,
+      password: hash
+    });
+    newUser.save(function(err, user) {
+      if (err) {
+        res.redirect('/');
+        return console.error(err);
+      } else {
+        res.redirect('/');
+      }
+    });
   });
 });
 
 router.post('/login', function(req, res) {
+  var checkPass = function(user_pass, hash) {
+    bcrypt.compare(user_pass, hash, function(err, result) {
+      console.log(result);
+      return result;
+    });
+  };
   usersModel.findOne({
     'username': req.body.login_username
   }, function(err, user) {
     if (err) {
       console.error(err);
       console.log('THERE HAS BEEN AN ERROR. USER NOT IN DB?');
-    } else if (user.password == req.body.login_password) {
-      req.session.user = user;
-      res.redirect('/');
+    } else if (user) {
+      bcrypt.compare(req.body.login_password, user.password, function(err, result) {
+        console.log(result);
+        if (result) {
+          console.log('success');
+          req.session.user = user;
+          res.redirect('/');
+        } else {
+          res.redirect('/');
+        }
+      });
     } else {
       res.redirect('/');
     }
@@ -80,10 +97,12 @@ router.post('/post', function(req, res) {
     // else {
     //   res.send(newPost);
     // }
+    console.log('about to emit');
     io.instance().to(req.user.username).emit('newPost', {
-      data: post.toObject()
+      data: newPost
     });
-    res.end();
+    console.log('just emitted');
+    res.send(newPost);
   });
   // .then(function(post) {
   //   console.log('hitting post socket send');
@@ -112,7 +131,7 @@ router.post('/follow/:username', function(req, res) {
           console.error(err);
         }
       });
-      socket.leave(req.params.username);
+      io.socket().leave(req.params.username);
       res.send(false);
     } else {
       usersModel.findOneAndUpdate({
@@ -126,7 +145,7 @@ router.post('/follow/:username', function(req, res) {
           console.error(err);
         }
       });
-      socket.join(req.params.username);
+      io.socket().join(req.params.username);
       res.send(true);
     }
   });
