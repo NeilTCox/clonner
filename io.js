@@ -16,17 +16,19 @@ module.exports = {
       cookie = cookieParser.parse(cookie);
       cookie = session.util.decode(mysession, cookie.session);
 
-      usersModel.findOne({
-        'username': cookie.content.user.username
-      }, function(err, user) {
-        if (err) {
-          console.error(err);
-        } else {
-          for (var i = 0; i < user.following.length; i++) {
-            socket.join(user.following[i]);
+      if (cookie) {
+        usersModel.findOne({
+          'username': cookie.content.user.username
+        }, function(err, user) {
+          if (err) {
+            console.error(err);
+          } else {
+            for (var i = 0; i < user.following.length; i++) {
+              socket.join(user.following[i]);
+            }
           }
-        }
-      });
+        });
+      }
     });
   },
   instance: function() {

@@ -33,7 +33,8 @@ router.post('/login', function(req, res) {
         if (result) {
           req.session.user = user;
         }
-        res.redirect('/');
+        console.log('im in success');
+        res.status(200).redirect('/');
       }).catch(function(err) {
         console.log('errored checkPassword');
         console.error(err);
