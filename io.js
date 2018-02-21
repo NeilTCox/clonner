@@ -22,9 +22,7 @@ module.exports = {
         if (err) {
           console.error(err);
         } else {
-          console.log('joining:');
           for (var i = 0; i < user.following.length; i++) {
-            console.log(user.following[i]);
             socket.join(user.following[i]);
           }
         }

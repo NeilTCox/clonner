@@ -111,7 +111,7 @@
         var userUsername = $(this).attr('data-user-username');
         $.ajax({
           method: 'POST',
-          url: `/follow/${userUsername}`
+          url: `/user/${userUsername}/follow`
         }).done(function(response) {
           if (response) {
             button.html('Following');
@@ -126,7 +126,6 @@
   <script type="text/javascript">
     var socket = io();
     socket.on('newPost', (data) => {
-      console.log(data.data);
       $('#post-list').prepend(
         `<li class="list-group-item">
           <div class="media post-media">

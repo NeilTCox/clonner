@@ -10,6 +10,8 @@ var mongoose = require('mongoose');
 var session = require('client-sessions');
 
 var index = require('./routes/index');
+var user = require('./routes/user');
+var post = require('./routes/post');
 
 var usersModel = require('./models/users');
 
@@ -42,12 +44,12 @@ app.use(function(req, res, next) {
   if (req.session && req.session.user) {
     usersModel.findOne({
       username: req.session.user.username
-    }, function(err, user) {
-      if (user) {
-        req.user = user.toObject();
+    }, function(err, this_user) {
+      if (this_user) {
+        req.user = this_user.toObject();
         delete req.user.password; // delete the password from the session
-        req.session.user = user; //refresh the session value
-        res.locals.user = user;
+        req.session.user = this_user; //refresh the session value
+        res.locals.user = this_user;
       }
       // finishing processing the middleware and run the route
       next();
@@ -58,6 +60,8 @@ app.use(function(req, res, next) {
 });
 
 app.use('/', index);
+app.use('/user', user);
+app.use('/post', post);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

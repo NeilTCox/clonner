@@ -19,7 +19,7 @@
       <input class="form-control" type="search" name="search" placeholder="Search">
     </form>
     <% if(typeof loggedIn !== 'undefined'){ %>
-      <form action="/logout" method="get">
+      <form action="/user/logout" method="get">
         <button class="btn btn-outline-success logout-button" type="submit" name="logout_button">Logout</button>
       </form>
       <% }else{ %>
@@ -38,7 +38,7 @@
             </button>
         </div>
         <div class="modal-body">
-          <form method="post" action="/login">
+          <form method="post" action="/user/login">
             <div class="form-group">
               <label for="login-form-username">Username:</label>
               <input class="form-control" id="login-form-username" type="text" name="login_username" placeholder="Username" required>
@@ -67,7 +67,7 @@
             </button>
         </div>
         <div class="modal-body">
-          <form method="post" action="/join">
+          <form method="post" action="/user/join">
             <div class="form-group">
               <label for="join-form-username">Username:</label>
               <input class="form-control" id="join-form-username" type="text" name="join_username" placeholder="Username" required>
